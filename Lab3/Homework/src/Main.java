@@ -16,7 +16,11 @@ public class Main {
         if (a != 0) {
             System.out.printf("Nghiệm của phương trình là x= " + simpleEquation(a, b));
         } else {
-            System.out.println("Phương trình đúng với mọi x");
+            if (b == 0) {
+                System.out.println("Phương trình đúng với mọi x");
+            } else {
+                System.out.println("Phương trình vô nghiệm");
+            }
         }
     }
 
@@ -34,7 +38,8 @@ public class Main {
             i++;
         }
     }
+
     public static double simpleEquation(double a, double b) {
-        return  -b / a;
+        return -b / a;
     }
 }
