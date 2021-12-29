@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Lab4/Array/Array.iml" filepath="$PROJECT_DIR$/Lab4/Array/Array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab3/ControlFlow/ControlFlow.iml" filepath="$PROJECT_DIR$/Lab3/ControlFlow/ControlFlow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab4/HomeWork/HomeWork.iml" filepath="$PROJECT_DIR$/Lab4/HomeWork/HomeWork.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2/HomeWork/HomeWork1.iml" filepath="$PROJECT_DIR$/Lab2/HomeWork/HomeWork1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab3/Homework/Homework.iml" filepath="$PROJECT_DIR$/Lab3/Homework/Homework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab2/Inlab/Inlab.iml" filepath="$PROJECT_DIR$/Lab2/Inlab/Inlab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java.iml" filepath="$PROJECT_DIR$/.idea/Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab1/Lab1.iml" filepath="$PROJECT_DIR$/Lab1/Lab1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab5/Lab5.iml" filepath="$PROJECT_DIR$/Lab5/Lab5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab4/Newfolder/Newfolder.iml" filepath="$PROJECT_DIR$/Lab4/Newfolder/Newfolder.iml" />
+    </modules>
+  </component>
+</project>
