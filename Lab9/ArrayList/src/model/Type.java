@@ -1,7 +1,9 @@
+package model;
+
 public enum Type {
-    HOUSEWARE("Đồ gia dụng"),
+    FASHION("Thời trang"),
     FOOD("Thực phẩm"),
-    FASHION("Thời trang");
+    HOUSEWARES("Đồ gia dụng");
     String value;
 
     Type(String value) {

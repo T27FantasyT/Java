@@ -1,3 +1,7 @@
+package model;
+
+import model.Type;
+
 public class Product {
     private int id;
     private String name;
