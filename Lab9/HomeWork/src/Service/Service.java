@@ -19,10 +19,15 @@ public class Service {
     }
 
     public void searchByName(ArrayList<Product> products, String word) {
+        int count = 0;
         for (Product p : products) {
-            if (p.getName().toLowerCase().contains(word)) {
+            if (p.getName().toLowerCase().contains(word.toLowerCase())) {
+                count++;
                 System.out.println(p);
             }
+        }
+        if(count==0){
+            System.out.println("Mặt hàng này không có trong danh sách: ");
         }
     }
 
