@@ -3,6 +3,7 @@ import Service.Service;
 import model.Product;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Controller {
@@ -113,12 +114,17 @@ public class Controller {
                     service.showProduct(products);
                     returnToMainMenu();
                     break;
-                default:
-                    System.out.println("Không có lựa chọn này");
-                    returnToMainMenu();
+                case 7:
+                    Collections.sort(products);
+                    System.out.println("Danh sách sản phẩm sắp xếp theo giá: ");
+                    service.showProduct(products);
                     break;
                 case 0:
                     System.exit(0);
+                    break;
+                default:
+                    System.out.println("Không có lựa chọn này");
+                    returnToMainMenu();
                     break;
             }
         }

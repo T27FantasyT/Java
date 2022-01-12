@@ -1,6 +1,6 @@
 package model;
 
-public class Product {
+public class Product implements Comparable<Product> {
     private int id;
     private String name;
     private Long sellPrice;
@@ -70,5 +70,10 @@ public class Product {
         return "Id: " + id + " - Tên: " + name + " - Giá bán: " +
                 sellPrice + " - Số lượng: " + quantity + " - Loại mặt hàng: " + type.getValue()
                 + " - Số lượng bán: " + sellQuantity;
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        return this.sellPrice.intValue() - o.sellPrice.intValue();
     }
 }
