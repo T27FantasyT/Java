@@ -5,7 +5,7 @@ public class Controller {
 
     static Service service = new Service();
     static Scanner sc = new Scanner(System.in);
-    static ArrayList<Account> listAccount = service.getAllAccount();
+    static ArrayList<Account> listAccount = new ArrayList<>();
     static Account acc = new Account();
 
 
@@ -34,12 +34,13 @@ public class Controller {
                     String password = sc.nextLine();
                     if (service.loginAccountValidator(listAccount, username)) {
                         if (service.loginPasswordValidate(listAccount, username, password)) {
-                            loginSuccessMenu();
                             acc.setUsername(username);
                             acc.setPassword(password);
                             for(Account a : listAccount){
                                 if(a.getUsername().equals(username)){
                                     acc.setEmail(a.getEmail());
+                            loginSuccessMenu();
+
                                 }
                             }
                         } else {
@@ -121,6 +122,7 @@ public class Controller {
                             newEmail = sc.nextLine();
                         }
                     }
+                    login();
                     break;
                 case 3:
                     System.out.println("Nhập mật khẩu: ");
@@ -139,6 +141,7 @@ public class Controller {
                             newPassword = sc.nextLine();
                         }
                     }
+                    login();
                     break;
                 case 4:
                     login();

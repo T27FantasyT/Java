@@ -6,13 +6,6 @@ public class Service {
 
     Scanner sc = new Scanner(System.in);
 
-    public ArrayList<Account> getAllAccount() {
-        ArrayList<Account> listAccount = new ArrayList<>();
-        listAccount.add(new Account("tien", "123456a@", "tien@gmail.com"));
-        listAccount.add(new Account("thuy", "123456a@", "thuy@gmail.com"));
-        return listAccount;
-    }
-
     public boolean loginPasswordValidate(ArrayList<Account> listAccount, String userName, String password) {
         for (Account a : listAccount) {
             if (a.getUsername().equals(userName)) {
@@ -123,39 +116,19 @@ public class Service {
         }
     }
 
-    public void changePassWord(ArrayList<Account> accounts,String password, String newPassword) {
-        boolean isContinuePw = true;
-        while (isContinuePw) {
-            if (passwordValidate(password)) {
-                for(Account a : accounts){
-                    if(a.getPassword().equals(password)){
-                        a.setPassword(newPassword);
-                    }
-                }
-                isContinuePw = false;
-            } else {
-                System.out.println("Password không phù hợp");
-                System.out.println("Nhập lại mật khẩu: ");
-                System.out.println("Password dài 7-15 kí tự, chứa ít nhất 1 kí tự in hoa, 1 kí tự đặc biệt(.,-_;)");
-                password = sc.nextLine();
+    public void changePassWord(ArrayList<Account> accounts, String password, String newPassword) {
+        for (Account a : accounts) {
+            if (a.getPassword().equals(password)) {
+                a.setPassword(newPassword);
             }
+
         }
     }
 
     public void changeEmail(ArrayList<Account> accounts, String email, String newEmail) {
-        boolean isContinueEm = true;
-        while (isContinueEm) {
-            if (emailValidate(newEmail)) {
-                for (Account a : accounts) {
-                    if (a.getEmail().equals(email)) {
-                        a.setEmail(newEmail);
-                    }
-                }
-                isContinueEm = false;
-            } else {
-                System.out.println("Email không phù hợp:");
-                System.out.println("Nhập lại email:");
-                email = sc.nextLine();
+        for (Account a : accounts) {
+            if (a.getEmail().equals(email)) {
+                a.setEmail(newEmail);
             }
         }
     }
