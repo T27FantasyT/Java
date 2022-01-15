@@ -9,7 +9,7 @@ public class Service {
     public ArrayList<Account> getAllAccount() {
         ArrayList<Account> listAccount = new ArrayList<>();
         listAccount.add(new Account("tien", "123456a@", "tien@gmail.com"));
-        listAccount.add(new Account("thuy", "123654a@", "thuy@gmail.com"));
+        listAccount.add(new Account("thuy", "123456a@", "thuy@gmail.com"));
         return listAccount;
     }
 
@@ -28,7 +28,6 @@ public class Service {
     public boolean loginAccountValidator(ArrayList<Account> listAccount, String username) {
         for (Account a : listAccount) {
             if (a.getUsername().equals(username)) return true;
-            else return false;
         }
         return false;
     }
@@ -61,7 +60,7 @@ public class Service {
     }
 
     public boolean passwordValidate(String password) {
-        Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[\\.\\,\\-\\_\\;])([^\\s]){7,15}$");
+        Pattern pattern = Pattern.compile("(?=.*[A-Z])(?=.*[\\.\\,\\-\\_\\;])([^\\s]){7,15}");
         return pattern.matcher(password).matches();
     }
 
@@ -106,9 +105,8 @@ public class Service {
         return new Account(userName, password, email);
     }
 
-    public ArrayList<Account> addAccount(ArrayList<Account> accounts) {
+    public void addAccount(ArrayList<Account> accounts) {
         accounts.add(createAccount());
-        return accounts;
     }
 
     public void show(ArrayList<Account> accounts) {
@@ -117,18 +115,23 @@ public class Service {
         }
     }
 
-    public void changeUserName(ArrayList<Account> accounts, String userName,String newUsername){
-        for (Account a : accounts){
-            if(a.getUsername().contains(userName)){
+    public void changeUserName(ArrayList<Account> accounts, String userName, String newUsername) {
+        for (Account a : accounts) {
+            if (a.getUsername().equals(userName)) {
                 a.setUsername(newUsername);
             }
         }
     }
 
-    public void changePassWord(String password){
+    public void changePassWord(ArrayList<Account> accounts,String password, String newPassword) {
         boolean isContinuePw = true;
         while (isContinuePw) {
             if (passwordValidate(password)) {
+                for(Account a : accounts){
+                    if(a.getPassword().equals(password)){
+                        a.setPassword(newPassword);
+                    }
+                }
                 isContinuePw = false;
             } else {
                 System.out.println("Password không phù hợp");
@@ -139,10 +142,15 @@ public class Service {
         }
     }
 
-    public void changeEmail(String email){
+    public void changeEmail(ArrayList<Account> accounts, String email, String newEmail) {
         boolean isContinueEm = true;
         while (isContinueEm) {
-            if (emailValidate(email)) {
+            if (emailValidate(newEmail)) {
+                for (Account a : accounts) {
+                    if (a.getEmail().equals(email)) {
+                        a.setEmail(newEmail);
+                    }
+                }
                 isContinueEm = false;
             } else {
                 System.out.println("Email không phù hợp:");

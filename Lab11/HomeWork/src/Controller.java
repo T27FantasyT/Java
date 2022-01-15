@@ -6,22 +6,27 @@ public class Controller {
     static Service service = new Service();
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Account> listAccount = service.getAllAccount();
+    static Account acc = new Account();
 
 
     public static void menu() {
         System.out.println("Đăng Nhập");
         System.out.println("1 - Đăng nhập: ");
         System.out.println("2 - Đăng ký: ");
+        System.out.println("3 - xem dan sach");
         System.out.println("Lựa chọn: ");
     }
 
-    public static Account mainMenu() {
+    public static void login() {
         boolean isContinue = true;
         while (isContinue) {
             menu();
             int choose = sc.nextInt();
             sc.nextLine();
             switch (choose) {
+                case 3 :
+                    service.show(listAccount);
+                    break;
                 case 1:
                     System.out.println("Nhập username: ");
                     String username = sc.nextLine();
@@ -30,25 +35,32 @@ public class Controller {
                     if (service.loginAccountValidator(listAccount, username)) {
                         if (service.loginPasswordValidate(listAccount, username, password)) {
                             loginSuccessMenu();
+                            acc.setUsername(username);
+                            acc.setPassword(password);
+                            for(Account a : listAccount){
+                                if(a.getUsername().equals(username)){
+                                    acc.setEmail(a.getEmail());
+                                }
+                            }
                         } else {
                             passwordErrorMenu();
                         }
                     } else {
                         System.out.println("Kiểm tra lại Username");
-                        mainMenu();
-                        break;
+                        login();
                     }
-                    service.show(listAccount);
+
+                    break;
                 case 2:
                     service.addAccount(listAccount);
+                    service.show(listAccount);
                     break;
                 default:
                     System.out.println("Không có lựa chọn này");
             }
-        }
-        return new Account(mainMenu().getUsername(), mainMenu().getPassword(), mainMenu().getEmail());
-    }
 
+        }
+    }
 
     public static void passwordErrorMenu() {
         System.out.println("1 - Đăng nhập lại: ");
@@ -60,13 +72,13 @@ public class Controller {
         while (isContinue) {
             switch (choose) {
                 case 1:
-                    mainMenu();
+                    login();
                     break;
                 case 2:
                     System.out.println("Nhập email: ");
                     String email = sc.nextLine();
                     service.forgotPassword(listAccount, email);
-                    mainMenu();
+                    login();
                     break;
                 default:
                     System.out.println("Không có lựa chọn này");
@@ -75,6 +87,7 @@ public class Controller {
     }
 
     public static void loginSuccessMenu() {
+
         System.out.println("1 - Thay đổi user name:");
         System.out.println("2 - Thay đổi email: ");
         System.out.println("3 - Thay đổi mật khẩu: ");
@@ -89,52 +102,53 @@ public class Controller {
                 case 1:
                     System.out.println("Nhập username mới: ");
                     String newUsername = sc.nextLine();
-                    service.changeUserName(listAccount, mainMenu().getUsername(), newUsername);
-                    service.show(listAccount);
+                    service.changeUserName(listAccount, acc.getUsername(), newUsername);
                     System.out.println("Đã thay đổi thành công");
+                    isContinue = false;
                     break;
                 case 2:
                     System.out.println("Nhập email: ");
-                    String email = sc.nextLine();
+                    String newEmail = sc.nextLine();
                     boolean isContinueEm = true;
                     while (isContinueEm) {
-                        if (service.emailValidate(email)) {
-                            mainMenu().setEmail(email);
+                        if (service.emailValidate(newEmail)) {
+                            service.changeEmail(listAccount, acc.getEmail(),newEmail);
                             System.out.println("Thay đổi email thành công");
                             isContinueEm = false;
                         } else {
                             System.out.println("Email không phù hợp:");
                             System.out.println("Nhập lại email:");
-                            email = sc.nextLine();
+                            newEmail = sc.nextLine();
                         }
                     }
                     break;
                 case 3:
                     System.out.println("Nhập mật khẩu: ");
                     System.out.println("Password dài 7-15 kí tự, chứa ít nhất 1 kí tự in hoa, 1 kí tự đặc biệt(.,-_;)");
-                    String password = sc.nextLine();
+                    String newPassword = sc.nextLine();
                     boolean isContinuePw = true;
                     while (isContinuePw) {
-                        if (service.passwordValidate(password)) {
-                            mainMenu().setPassword(password);
+                        if (service.passwordValidate(newPassword)) {
+                            service.changePassWord(listAccount,acc.getPassword(),newPassword);
                             System.out.println("Thay đổi mật khẩu thành công");
                             isContinuePw = false;
                         } else {
                             System.out.println("Password không phù hợp");
                             System.out.println("Nhập lại mật khẩu: ");
                             System.out.println("Password dài 7-15 kí tự, chứa ít nhất 1 kí tự in hoa, 1 kí tự đặc biệt(.,-_;)");
-                            password = sc.nextLine();
+                            newPassword = sc.nextLine();
                         }
                     }
                     break;
                 case 4:
-                    mainMenu();
+                    login();
+                    break;
                 case 0:
                     System.exit(0);
+                    break;
                 default:
                     System.out.println("Không có lựa chọn này");
-
-
+                    break;
             }
         }
     }
