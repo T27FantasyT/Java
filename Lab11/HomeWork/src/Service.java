@@ -94,7 +94,6 @@ public class Service {
             }
         }
 
-
         return new Account(userName, password, email);
     }
 
@@ -121,7 +120,6 @@ public class Service {
             if (a.getPassword().equals(password)) {
                 a.setPassword(newPassword);
             }
-
         }
     }
 
