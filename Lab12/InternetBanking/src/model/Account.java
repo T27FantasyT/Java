@@ -1,3 +1,5 @@
+package model;
+
 public class Account {
     private String name;
     private String tel;
@@ -53,14 +55,4 @@ public class Account {
         this.balance = balance;
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "name='" + name + '\'' +
-                ", tel='" + tel + '\'' +
-                ", accountNumber='" + accountNumber + '\'' +
-                ", password='" + password + '\'' +
-                ", balance=" + balance +
-                '}';
-    }
 }
