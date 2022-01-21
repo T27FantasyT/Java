@@ -18,7 +18,7 @@ public class BMI {
         while ( isTrue){
             try{
                 number = Double.parseDouble(sc.nextLine());
-                if(number<=0) throw new CustomException("Khong hop le");
+                Validate.validateHeigh(number);
                 isTrue = false;
             } catch (CustomException e) {
                 System.out.println(e.getMessage());

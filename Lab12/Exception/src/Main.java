@@ -26,10 +26,8 @@ public class Main {
 //            }
 //        }
 
-//        BMI bmi = new BMI();
-//        bmi.calcu();
-        int[] f = new int[-1];
-        System.out.println(f);
+        BMI bmi = new BMI();
+        bmi.calcu();
 
 //
 
