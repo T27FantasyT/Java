@@ -3,7 +3,6 @@ package service;
 import exception.TransferException;
 import model.Account;
 import model.TransferHistory;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
