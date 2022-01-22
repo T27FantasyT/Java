@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,17 +13,13 @@ public class Validate {
     }
 
 
-    public void addValidate(String str, String validate){
-        while (true){
+    public boolean addValidate(String str, String validate){
             if(validate(str,validate)){
-                break;
+                return true;
             } else {
                 System.out.println("Chuỗi nhập vào không đúng");
-                str= sc.nextLine();
+                return  false;
             }
-
-
-        }
     }
 
 }

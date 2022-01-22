@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,9 +36,13 @@ public class Service {
     public Customer createCustomer(ArrayList<Customer> customers) {
         System.out.println("Nhập Id: ");
         String id = sc.nextLine();
-        validate.addValidate(id,validateId);
-        for(Customer c : customers){
-            if(c.getId().equals(id)){
+        while (true) {
+            if (validate.addValidate(id, validateId))
+                break;
+            else id = sc.nextLine();
+        }
+        for (Customer c : customers) {
+            if (c.getId().equals(id)) {
                 return null;
             }
         }
@@ -49,11 +52,11 @@ public class Service {
         String str = sc.nextLine();
         LocalDate date = LocalDate.parse(str);
         System.out.println("Chọn giới tính: ");
-        System.out.println("1 - Nam \n 2 - Nữ" );
+        System.out.println("1 - Nam \n 2 - Nữ");
         int choose = sc.nextInt();
         sc.nextLine();
         Sex sex = null;
-        switch (choose){
+        switch (choose) {
             case 1:
                 sex = Sex.MALE;
                 break;
@@ -67,33 +70,114 @@ public class Service {
         String homeTown = sc.nextLine();
         System.out.println("Nhập số điện thoại (Số điện thoại có 10 hoặc 11 số, bắt đầu bằng số 0");
         String tel = sc.nextLine();
-        validate.addValidate(tel,validateTel);
+        while (true) {
+            if (validate.addValidate(tel, validateTel))
+                break;
+            else tel = sc.nextLine();
+        }
         System.out.println("Nhập vào email");
         String email = sc.nextLine();
-        validate.addValidate(email,validateEmail);
-        return new Customer(id,name,date,sex, homeTown,tel,email);
+
+        while (true) {
+            if (validate.addValidate(email, validateEmail))
+                break;
+            else tel = sc.nextLine();
+        }
+        return new Customer(id, name, date, sex, homeTown, tel, email);
     }
 
-    public Customer searchById(ArrayList<Customer> customers, String id){
-        for(Customer c : customers){
-            if(c.getId().equals(id)){
-              return c;
-            } else {
-                System.out.println("Không tìm thấy thông tin khách hàng");
+    public void addCustomer(ArrayList<Customer> customers) {
+        Customer customer = createCustomer(customers);
+        if (customer != null) {
+            customers.add(customer);
+        } else return;
+    }
+
+    public Customer searchById(ArrayList<Customer> customers, String id) {
+        for (Customer c : customers) {
+            if (c.getId().equals(id)) {
+                return c;
             }
         }
         return null;
     }
 
-    public void changeInfo(ArrayList<Customer> customers, Customer customer){
-        for(Customer c : customers){
-            if(customer.){
-                customer = createCustomer(customers);
-            }
-        }
+    public void delete(ArrayList<Customer> customers, String id) {
+        Customer customer = searchById(customers, id);
+        customers.remove(customer);
     }
 
+    public void changeInfo(ArrayList<Customer> customers, String id) {
+        Customer customer = searchById(customers, id);
+        System.out.println("1 - Đổi tên:");
+        System.out.println("2 - Đổi ngày sinh");
+        System.out.println("3 - Đổi giới tính");
+        System.out.println("4 - Đổi quê quán");
+        System.out.println("5 - Đổi số điện thoại");
+        System.out.println("6 - Đổi Email");
+        int choose = sc.nextInt();
+        sc.nextLine();
+        switch (choose) {
+            case 1:
+                System.out.println("Nhập tên mới");
+                customer.setName(sc.nextLine());
+                System.out.println("Thay đổi thành công");
+                break;
+            case 2:
+                System.out.println("Nhập ngày sinh [yyyy-MM-dd]");
+                customer.setDateOfBirth(LocalDate.parse(sc.nextLine()));
+                System.out.println("Thay đổi thành công");
+                break;
+            case 3:
+                System.out.println("Chọn giới tính: ");
+                System.out.println("1 - Nam \n 2 - Nữ");
+                int chosen = sc.nextInt();
+                sc.nextLine();
+                Sex sex = null;
+                switch (chosen) {
+                    case 1:
+                        customer.setSex(Sex.MALE);
+                        break;
+                    case 2:
+                        customer.setSex(Sex.FEMALE);
+                        break;
+                    default:
+                        System.out.println("Không có lựa chọn này");
+                        break;
+                }
+                System.out.println("Thay đổi thành công");
+                break;
+            case 4:
+                System.out.println("Nhập quê quán: ");
+                customer.setHomeTown(sc.nextLine());
+                System.out.println("Thay đổi thành công");
+                break;
+            case 5:
+                System.out.println("Nhập số điện thoại (Số điện thoại có 10 hoặc 11 số, bắt đầu bằng số 0");
+                String tel = sc.nextLine();
+                while (true) {
+                    if (validate.addValidate(tel, validateTel))
+                        break;
+                    else tel = sc.nextLine();
+                }
+                customer.setTel(tel);
+                System.out.println("Thay đổi thành công");
+                break;
+            case 6:
+                System.out.println("Nhập vào email");
+                String email = sc.nextLine();
+                while (true) {
+                    if (validate.addValidate(email, validateEmail))
+                        break;
+                    else email = sc.nextLine();
+                }
+                customer.setEmail(email);
+                System.out.println("Thay đổi thành công");
+                break;
+            default:
+                System.out.println("Không có lựa chọn này");
 
-
+        }
+    }
 
 }
