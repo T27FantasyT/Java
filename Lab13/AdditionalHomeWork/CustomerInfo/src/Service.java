@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Service {
@@ -23,6 +25,18 @@ public class Service {
         for (Customer c : customers) {
             System.out.println(c);
         }
+    }
+
+    public void countSex(ArrayList<Customer> customers){
+        Map<Sex, Integer> list = new HashMap<>();
+        for(Customer c : customers){
+            if(list.get(c.getSex()) == null){
+                list.put(c.getSex(),1);
+            } else {
+                list.put(c.getSex(),list.get(c.getSex())+1);
+            }
+        }
+        System.out.println(list);
     }
 
     public void showCustomerInfo(ArrayList<Customer> customers, Sex sex) {
@@ -52,7 +66,7 @@ public class Service {
         String str = sc.nextLine();
         LocalDate date = LocalDate.parse(str);
         System.out.println("Chọn giới tính: ");
-        System.out.println("1 - Nam \n 2 - Nữ");
+        System.out.println("1 - Nam \n2 - Nữ");
         int choose = sc.nextInt();
         sc.nextLine();
         Sex sex = null;
@@ -65,6 +79,7 @@ public class Service {
                 break;
             default:
                 System.out.println("Không có lựa chọn này");
+                break;
         }
         System.out.println("Nhập quê quán: ");
         String homeTown = sc.nextLine();
@@ -85,6 +100,8 @@ public class Service {
         }
         return new Customer(id, name, date, sex, homeTown, tel, email);
     }
+
+
 
     public void addCustomer(ArrayList<Customer> customers) {
         Customer customer = createCustomer(customers);
