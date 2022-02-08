@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Service {
     ArrayList<Employee> employees = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
+    Random random = new Random();
 
     public ArrayList<Employee> getEmployee() {
         employees.add(new Employee(1, "Nguyễn Văn A", Sex.MALE, "Project Manager", "0987654321", "123@gmail.com", "123456"));
@@ -15,12 +17,10 @@ public class Service {
     }
 
     public Employee createAccount() {
-        int id =0;
+        int id;
         int count = 0;
         while (true) {
-            System.out.println("Nhập id: ");
-            id = sc.nextInt();
-            sc.nextLine();
+            id = random.nextInt(100);
             for (Employee e : employees) {
                 if (id == e.getId()) {
                     count++;
@@ -28,8 +28,6 @@ public class Service {
             }
             if (count == 0) {
                 break;
-            } else {
-                System.out.println("Id đã tồn tại, chọn id khác");
             }
         }
 
@@ -68,9 +66,8 @@ public class Service {
 
     }
 
-    public ArrayList<Employee> addAccount(ArrayList<Employee> employees){
+    public void addAccount(ArrayList<Employee> employees){
         employees.add(createAccount());
-        return employees;
     }
 
     public void show(ArrayList<Employee> employees){

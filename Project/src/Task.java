@@ -1,12 +1,15 @@
+
 public class Task {
-    private Employee employee;
     private int id;
+    private String time;
+    private Employee employee;
     private String task;
     private State state;
 
-    public Task(Employee employee, int id, String task, State state) {
-        this.employee = employee;
+    public Task(int id, String time, Employee employee, String task, State state) {
         this.id = id;
+        this.time = time;
+        this.employee = employee;
         this.task = task;
         this.state = state;
     }
@@ -17,6 +20,14 @@ public class Task {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public Employee getEmployee() {
@@ -45,6 +56,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Số thứ tự " + id + " Tên nhân viên " + employee.getName() + " đầu việc " + task + " tình trạng " + state;
+        return "Id " + id +" - Thời gian: " + time + " - Tên nhân viên: " + employee.getName() + " - Nội dung công việc: " + task + " - Tình trạng: " + state.getValue();
     }
 }

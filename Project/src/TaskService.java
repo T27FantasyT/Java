@@ -1,14 +1,17 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TaskService {
 
     Scanner sc = new Scanner(System.in);
+    Random random = new Random();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
     public Task createTask(Employee employee){
-        System.out.println("Nhập Id: ");
-        int id = sc.nextInt();
-        sc.nextLine();
+        int id = random.nextInt(100);
         System.out.println("Nhập nội dung công việc: ");
         String task = sc.nextLine();
         State state = null;
@@ -30,23 +33,24 @@ public class TaskService {
                     break;
             }
         }
-        return new Task(employee, id, task,state);
+        return new Task(id,LocalDateTime.now().format(formatter), employee, task ,state);
     }
 
-    public ArrayList<Task> addTask(ArrayList<Task> taskArrayList,Employee employee){
+    public void addTask(ArrayList<Task> taskArrayList,Employee employee){
         taskArrayList.add(createTask(employee));
-        return taskArrayList;
     }
 
-    public void show(ArrayList<Task> taskArrayList){
+    public void showStaff(ArrayList<Task> taskArrayList,Employee employee){
         for(Task t : taskArrayList){
-            System.out.println(t);
+            if(t.getEmployee()==employee){
+                System.out.println(t);
+            }
         }
     }
 
-    public void updateState(ArrayList<Task> taskArrayList, Employee employee){
+    public void updateState(ArrayList<Task> taskArrayList, Employee employee,int id){
         for(Task t : taskArrayList){
-            if(t.getEmployee()==employee){
+            if(t.getEmployee()==employee&&t.getId()==id){
                 boolean isTrue = true;
                 while(isTrue){
                     System.out.println("Nhập trạng thái: ");
