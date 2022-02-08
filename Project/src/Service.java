@@ -15,15 +15,15 @@ public class Service {
     }
 
     public Employee createAccount() {
-        int id = 0;
+        int id =0;
         int count = 0;
         while (true) {
             System.out.println("Nhập id: ");
             id = sc.nextInt();
+            sc.nextLine();
             for (Employee e : employees) {
                 if (id == e.getId()) {
                     count++;
-                    break;
                 }
             }
             if (count == 0) {
@@ -79,22 +79,25 @@ public class Service {
         }
     }
 
-    public boolean login(String email, String password){
+    public boolean loginAccountValidate(ArrayList<Employee> employees,String email){
 
         for(Employee e : employees){
                 if (email.equals(e.getEmail())) {
-                    if (password.equals(e.getPassword())) {
-                        System.out.println("Đăng nhập thành công");
-                        return true;
-                    } else {
-                        System.out.println("Sai mật khẩu");
-                        return false;
-                    }
-                } else {
-                    System.out.println("Không tồn tại tài khoản này");
-                    return false;
+                    return true;
                 }
             }
+        return false;
+    }
+
+    public boolean loginPasswordValidate(ArrayList<Employee> employees, String email, String password){
+        for(Employee e : employees){
+            if(e.getEmail().equals(email)){
+                if(e.getPassword().equals(password)){
+                    System.out.println("Chào mừng " + e.getName());
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -102,16 +105,24 @@ public class Service {
     public void changePassword(Employee employee){
         System.out.println("Nhập password mới: ");
         employee.setPassword(sc.nextLine());
+        System.out.println("Đổi password thành công");
     }
 
     public void changePosition(Employee employee){
         System.out.println("Nhập vị trí mới: ");
         employee.setPosition(sc.nextLine());
+        System.out.println("Cập nhật vị trí mới thành công");
     }
 
     public void changeEmail(Employee employee){
         System.out.println("Nhập email mới: ");
         employee.setEmail(sc.nextLine());
+        System.out.println("Cập nhật email thành công");
+    }
+    public void changeTel(Employee employee){
+        System.out.println("Nhập số điện thoại mới: ");
+        employee.setTel(sc.nextLine());
+        System.out.println("Cập nhật số điện thoại thành công");
     }
 
 }

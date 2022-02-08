@@ -1,12 +1,22 @@
 public class Task {
     private Employee employee;
+    private int id;
     private String task;
     private State state;
 
-    public Task(Employee employee, String task, State state) {
+    public Task(Employee employee, int id, String task, State state) {
         this.employee = employee;
+        this.id = id;
         this.task = task;
         this.state = state;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Employee getEmployee() {
@@ -35,6 +45,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return employee.getName() + " đầu việc " + task + " tình trạng " + state;
+        return "Số thứ tự " + id + " Tên nhân viên " + employee.getName() + " đầu việc " + task + " tình trạng " + state;
     }
 }
