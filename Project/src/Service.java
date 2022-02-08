@@ -5,11 +5,13 @@ public class Service {
     ArrayList<Employee> employees = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
-    public void getEmployee(ArrayList<Employee> employees) {
+    public ArrayList<Employee> getEmployee() {
         employees.add(new Employee(1, "Nguyễn Văn A", Sex.MALE, "Project Manager", "0987654321", "123@gmail.com", "123456"));
         employees.add(new Employee(2, "Trần Thị B", Sex.FEMALE, "Admin", "0999999999", "456@gmail.com", "123456"));
         employees.add(new Employee(3, "Nguyễn Thị C", Sex.FEMALE, "Staff", "0123456789", "abc@gmail.com", "123456"));
         employees.add(new Employee(4, "Nguyễn Văn D", Sex.MALE, "Staff", "0000000000", "def@gmail.com", "123456"));
+
+        return employees;
     }
 
     public Employee createAccount() {
@@ -68,7 +70,6 @@ public class Service {
 
     public ArrayList<Employee> addAccount(ArrayList<Employee> employees){
         employees.add(createAccount());
-
         return employees;
     }
 
@@ -77,6 +78,26 @@ public class Service {
             System.out.println(e);
         }
     }
+
+    public boolean login(String email, String password){
+
+        for(Employee e : employees){
+                if (email.equals(e.getEmail())) {
+                    if (password.equals(e.getPassword())) {
+                        System.out.println("Đăng nhập thành công");
+                        return true;
+                    } else {
+                        System.out.println("Sai mật khẩu");
+                        return false;
+                    }
+                } else {
+                    System.out.println("Không tồn tại tài khoản này");
+                    return false;
+                }
+            }
+        return false;
+    }
+
 
     public void changePassword(Employee employee){
         System.out.println("Nhập password mới: ");
