@@ -1,29 +1,33 @@
+package service;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
+import model.*;
 
 public class CheckInService {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
     Random random = new Random();
-    CheckIn checkIn = new CheckIn();
+    int id;
 
-    public void checkIn(ArrayList<CheckIn> checkInCheckOut,Employee employee){
-        checkIn.setId(random.nextInt(100));
-        checkIn.setEmployee(employee);
-        checkIn.setCheckIn(LocalDateTime.now().format(formatter));
-        checkIn.setCheckOut("");
+    public CheckIn checkIn(ArrayList<CheckIn> checkInCheckOut, Employee employee){
+        CheckIn checkIn = new CheckIn(random.nextInt(100),employee,LocalDateTime.now().format(formatter),"");
         checkInCheckOut.add(checkIn);
+        id = checkIn.getId();
+        return checkIn;
     }
-    public void checkOut(ArrayList<CheckIn> checkInCheckOut){
-        for(CheckIn c : checkInCheckOut){
-            if(c.getId()==checkIn.getId()){
+
+    public void checkOut(ArrayList<CheckIn> checkInCheckOut, Employee employee){
+            for(CheckIn c : checkInCheckOut){
+            if(c.getId()==id){
                 c.setCheckOut(LocalDateTime.now().format(formatter));
             }
         }
+
     }
-    public void showStaff(ArrayList<CheckIn> checkInCheckOut,Employee employee){
+    public void showStaff(ArrayList<CheckIn> checkInCheckOut, Employee employee){
         for(CheckIn c : checkInCheckOut){
             if(c.getEmployee()==employee){
                 System.out.println(c);

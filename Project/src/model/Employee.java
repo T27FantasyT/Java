@@ -1,3 +1,5 @@
+package model;
+
 public class Employee {
     private int id;
     private String name;
@@ -78,7 +80,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "model.Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", sex=" + sex +

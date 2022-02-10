@@ -1,3 +1,5 @@
+package model;
+
 public class CheckIn {
     private int id;
     private Employee employee;
@@ -5,6 +7,13 @@ public class CheckIn {
     private String checkOut;
 
     public CheckIn() {
+    }
+
+    public CheckIn(int id, Employee employee, String checkIn, String checkOut) {
+        this.id = id;
+        this.employee = employee;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
     }
 
     public int getId() {

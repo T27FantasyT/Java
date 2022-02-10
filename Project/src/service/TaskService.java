@@ -1,3 +1,9 @@
+package service;
+
+import model.Employee;
+import model.Task;
+import model.State;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -40,6 +46,12 @@ public class TaskService {
         taskArrayList.add(createTask(employee));
     }
 
+    public void show(ArrayList<Task> taskArrayList){
+        for(Task t : taskArrayList){
+            System.out.println(t);
+        }
+    }
+
     public void showStaff(ArrayList<Task> taskArrayList,Employee employee){
         for(Task t : taskArrayList){
             if(t.getEmployee()==employee){
@@ -48,7 +60,7 @@ public class TaskService {
         }
     }
 
-    public void updateState(ArrayList<Task> taskArrayList, Employee employee,int id){
+    public void updateState(ArrayList<Task> taskArrayList, Employee employee, int id){
         for(Task t : taskArrayList){
             if(t.getEmployee()==employee&&t.getId()==id){
                 boolean isTrue = true;

@@ -1,6 +1,9 @@
+package service;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import model.*;
 
 public class Service {
     ArrayList<Employee> employees = new ArrayList<>();
@@ -76,7 +79,7 @@ public class Service {
         }
     }
 
-    public boolean loginAccountValidate(ArrayList<Employee> employees,String email){
+    public boolean loginAccountValidate(ArrayList<Employee> employees, String email){
 
         for(Employee e : employees){
                 if (email.equals(e.getEmail())) {

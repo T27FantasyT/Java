@@ -1,10 +1,12 @@
-public enum Sex {
-    MALE("Nam"),
-    FEMALE("Nữ");
+package model;
+
+public enum State {
+    COMPLETE("Hoàn thành"),
+    INCOMPLETE("Chưa hoàn thành");
 
     private final String value;
 
-    Sex(String value) {
+    State(String value) {
         this.value = value;
     }
 
