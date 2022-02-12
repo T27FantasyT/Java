@@ -4,12 +4,12 @@ public class Employee {
     private int id;
     private String name;
     private Sex sex;
-    private String position;
+    private Position position;
     private String tel;
     private String email;
     private String password;
 
-    public Employee(int id, String name, Sex sex, String position, String tel, String email, String password) {
+    public Employee(int id, String name, Sex sex, Position position, String tel, String email, String password) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -54,11 +54,11 @@ public class Employee {
         this.sex = sex;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -80,14 +80,10 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "model.Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", sex=" + sex +
-                ", position='" + position + '\'' +
-                ", tel='" + tel + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Id: " + id + " - Tên nhân sự: " + name
+                + " - Giới tính: " + sex.getValue() + " - Vị trí: "
+                + position.getValue() + " - Số điện thoại: " + tel
+                + " - Địa chỉ email: " + email
+                + " - Mật khẩu: " + password;
     }
 }

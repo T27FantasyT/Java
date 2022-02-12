@@ -75,6 +75,6 @@ public class Approve {
                 + " - Người gửi yêu cầu: " + employee.getName()
                 + " - Nội dung: " + detail
                 + " - Chi phí: " + price
-                + " - Tình trạng: " + state;
+                + " - Tình trạng: " + state.getValue();
     }
 }

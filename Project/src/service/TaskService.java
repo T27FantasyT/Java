@@ -20,26 +20,7 @@ public class TaskService {
         int id = random.nextInt(100);
         System.out.println("Nhập nội dung công việc: ");
         String task = sc.nextLine();
-        State state = null;
-        boolean isTrue = true;
-        while(isTrue){
-            System.out.println("Nhập trạng thái: ");
-            System.out.println("1 - Đã hoàn thành: \n2 - Chưa hoàn thành: ");
-            int choose = sc.nextInt();
-            sc.nextLine();
-            switch (choose){
-                case 1: state = State.COMPLETE;
-                isTrue = false;
-                break;
-                case 2: state = State.INCOMPLETE;
-                isTrue = false;
-                break;
-                default:
-                    System.out.println("Không có lựa chọn này: ");
-                    break;
-            }
-        }
-        return new Task(id,LocalDateTime.now().format(formatter), employee, task ,state);
+        return new Task(id,LocalDateTime.now().format(formatter), employee, task ,State.INCOMPLETE);
     }
 
     public void addTask(ArrayList<Task> taskArrayList,Employee employee){
@@ -53,9 +34,13 @@ public class TaskService {
     }
 
     public void showStaff(ArrayList<Task> taskArrayList,Employee employee){
-        for(Task t : taskArrayList){
-            if(t.getEmployee()==employee){
-                System.out.println(t);
+        if(taskArrayList==null){
+            System.out.println("Danh sách trống");
+        } else {
+            for (Task t : taskArrayList) {
+                if (t.getEmployee() == employee) {
+                    System.out.println(t);
+                }
             }
         }
     }

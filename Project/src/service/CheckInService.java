@@ -13,7 +13,7 @@ public class CheckInService {
     int id;
 
     public CheckIn checkIn(ArrayList<CheckIn> checkInCheckOut, Employee employee){
-        CheckIn checkIn = new CheckIn(random.nextInt(100),employee,LocalDateTime.now().format(formatter),"");
+        CheckIn checkIn = new CheckIn(random.nextInt(100),employee,LocalDateTime.now().format(formatter),"-");
         checkInCheckOut.add(checkIn);
         id = checkIn.getId();
         return checkIn;
@@ -28,16 +28,24 @@ public class CheckInService {
 
     }
     public void showStaff(ArrayList<CheckIn> checkInCheckOut, Employee employee){
-        for(CheckIn c : checkInCheckOut){
-            if(c.getEmployee()==employee){
-                System.out.println(c);
+        if(checkInCheckOut==null){
+            System.out.println("Danh sách trống");
+        } else {
+            for (CheckIn c : checkInCheckOut) {
+                if (c.getEmployee() == employee) {
+                    System.out.println(c);
+                }
             }
         }
     }
 
     public void show(ArrayList<CheckIn> checkInCheckOut){
-        for(CheckIn c : checkInCheckOut){
-            System.out.println(c);
+        if(checkInCheckOut==null){
+            System.out.println("Danh sách trống");
+        } else {
+            for (CheckIn c : checkInCheckOut) {
+                System.out.println(c);
+            }
         }
     }
 }

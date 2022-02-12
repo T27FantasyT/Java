@@ -2,7 +2,6 @@ package controller;
 
 import model.*;
 import service.*;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -41,13 +40,13 @@ public class Controller {
                             for (Employee e : employees) {
                                 if (email.equals(e.getEmail())) {
                                     switch (e.getPosition()) {
-                                        case "Staff":
+                                        case STAFF:
                                             staffAccLogin();
                                             break;
-                                        case "Project Manager":
+                                        case PROJECT_MANAGER:
                                             projectManagerLogin();
                                             break;
-                                        case "Admin":
+                                        case ADMIN:
                                             adminLogin();
                                             break;
                                     }
@@ -210,7 +209,7 @@ public class Controller {
                             case 1:
                                 checkInService.checkIn(checkInCheckOut, projectManager);
                                 System.out.println("Đã check in thành công vào lúc: " + LocalTime.now().format(formatter));
-                                adminLogin();
+                                projectManagerLogin();
                                 break;
                             case 2:
                                 checkInService.checkOut(checkInCheckOut, projectManager);
@@ -221,7 +220,7 @@ public class Controller {
                                 checkInService.showStaff(checkInCheckOut, projectManager);
                                 break;
                             case 0:
-                                adminLogin();
+                                projectManagerLogin();
                                 break;
                             default:
                                 System.out.println("Không có lựa chọn này");
@@ -386,6 +385,7 @@ public class Controller {
                                 System.out.println("Không có lựa chọn này");
                                 break;
                         }
+                        adminLogin();
                     }
                 case 0:
                     menu();

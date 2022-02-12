@@ -11,10 +11,10 @@ public class Service {
     Random random = new Random();
 
     public ArrayList<Employee> getEmployee() {
-        employees.add(new Employee(1, "Nguyễn Văn A", Sex.MALE, "Project Manager", "0987654321", "123@gmail.com", "123456"));
-        employees.add(new Employee(2, "Trần Thị B", Sex.FEMALE, "Admin", "0999999999", "456@gmail.com", "123456"));
-        employees.add(new Employee(3, "Nguyễn Thị C", Sex.FEMALE, "Staff", "0123456789", "abc@gmail.com", "123456"));
-        employees.add(new Employee(4, "Nguyễn Văn D", Sex.MALE, "Staff", "0000000000", "def@gmail.com", "123456"));
+        employees.add(new Employee(1, "Manager", Sex.MALE, Position.PROJECT_MANAGER, "0987654321", "manager@gmail.com", "123456"));
+        employees.add(new Employee(2, "Admin", Sex.FEMALE, Position.ADMIN, "0999999999", "admin@gmail.com", "123456"));
+        employees.add(new Employee(3, "Staff1", Sex.FEMALE, Position.STAFF, "0123456789", "staff1@gmail.com", "123456"));
+        employees.add(new Employee(4, "Staff2", Sex.MALE, Position.STAFF, "0000000000", "staff2@gmail.com", "123456"));
 
         return employees;
     }
@@ -36,10 +36,11 @@ public class Service {
 
         System.out.println("Nhập tên: ");
         String name = sc.nextLine();
-        System.out.println("Chọn giới tính: ");
         boolean isTrue = true;
         Sex sex = null;
         while (isTrue) {
+            System.out.println("Chọn giới tính: ");
+            System.out.println("1 - Nam \t2 - Nữ");
             int choose = sc.nextInt();
             sc.nextLine();
             switch (choose) {
@@ -56,8 +57,27 @@ public class Service {
                     break;
             }
         }
-        System.out.println("Nhập vị trí: ");
-        String position = sc.nextLine();
+        boolean isContinue = true;
+        Position position = null;
+        while(isContinue){
+            System.out.println("Chọn vị trí: ");
+            System.out.println("1 - Project Manager \t2 - Admin \t3 - Staff");
+            int chosen = sc.nextInt();
+            switch (chosen){
+                case 1: position = Position.PROJECT_MANAGER;
+                isContinue = false;
+                break;
+                case 2: position = Position.ADMIN;
+                isContinue = false;
+                break;
+                case 3: position = Position.STAFF;
+                isContinue = false;
+                break;
+                default:
+                    System.out.println("Lựa chọn không đúng");
+            }
+
+        }
         System.out.println("Nhập số điện thoại: ");
         String tel = sc.nextLine();
         System.out.println("Nhập email: ");
@@ -109,8 +129,29 @@ public class Service {
     }
 
     public void changePosition(Employee employee){
-        System.out.println("Nhập vị trí mới: ");
-        employee.setPosition(sc.nextLine());
+        boolean isTrue = true;
+        while(isTrue) {
+            System.out.println("Nhập vị trí mới: ");
+            System.out.println("1 - Project Manager \t2 - Admin \t3 - Staff");
+            int choose = sc.nextInt();
+            switch (choose){
+                case 1:
+                    employee.setPosition(Position.PROJECT_MANAGER);
+                    isTrue = false;
+                    break;
+                case 2:
+                    employee.setPosition(Position.ADMIN);
+                    isTrue = false;
+                    break;
+                case 3:
+                    employee.setPosition(Position.STAFF);
+                    isTrue = false;
+                    break;
+                default:
+                    System.out.println("Không tồn tại vị trí này");
+                    break;
+            }
+        }
         System.out.println("Cập nhật vị trí mới thành công");
     }
 
