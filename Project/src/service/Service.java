@@ -75,9 +75,11 @@ public class Service {
                 break;
                 default:
                     System.out.println("Lựa chọn không đúng");
+                    break;
             }
 
         }
+        sc.nextLine();
         System.out.println("Nhập số điện thoại: ");
         String tel = sc.nextLine();
         System.out.println("Nhập email: ");

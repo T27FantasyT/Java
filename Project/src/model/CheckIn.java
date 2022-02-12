@@ -50,7 +50,7 @@ public class CheckIn {
 
     @Override
     public String toString() {
-        return "Id " + employee.getId() + " - Nhân sự "+ employee.getName()
+        return "Nhân sự "+ employee.getName()
                 + "- Giờ check in: " + checkIn + " - Giờ check out: " + checkOut;
     }
 }

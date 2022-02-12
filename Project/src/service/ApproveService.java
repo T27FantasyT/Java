@@ -45,6 +45,8 @@ public class ApproveService {
                         break;
                     case 2:
                         a.setState(ApproveState.REJECTED);
+                        System.out.println("Ghi lí do từ chối: ");
+                        a.setReason(sc.nextLine());
                         break;
                     default:
                         System.out.println("Không có lựa chọn này");

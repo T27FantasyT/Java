@@ -28,24 +28,16 @@ public class CheckInService {
 
     }
     public void showStaff(ArrayList<CheckIn> checkInCheckOut, Employee employee){
-        if(checkInCheckOut==null){
-            System.out.println("Danh sách trống");
-        } else {
             for (CheckIn c : checkInCheckOut) {
                 if (c.getEmployee() == employee) {
                     System.out.println(c);
                 }
-            }
         }
     }
 
     public void show(ArrayList<CheckIn> checkInCheckOut){
-        if(checkInCheckOut==null){
-            System.out.println("Danh sách trống");
-        } else {
             for (CheckIn c : checkInCheckOut) {
                 System.out.println(c);
             }
-        }
     }
 }

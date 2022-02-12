@@ -7,18 +7,29 @@ public class Approve {
     private String detail;
     private Employee employee;
     private String price;
+    private String reason;
 
-    public Approve(int id, ApproveState state, String time, String detail, Employee employee, String price) {
+
+    public Approve(int id, ApproveState state, String time, String detail, Employee employee, String price, String reason) {
         this.id = id;
         this.state = state;
         this.time = time;
         this.detail = detail;
         this.employee = employee;
         this.price = price;
+        this.reason = reason;
     }
 
     public Approve(int id, String time, String detail, Employee employee, String price) {
-        this(id, ApproveState.NOT_APPROVE_YET,time,detail, employee, price);
+        this(id, ApproveState.NOT_APPROVE_YET,time,detail, employee, price, "");
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public Employee getEmployee() {
@@ -75,6 +86,7 @@ public class Approve {
                 + " - Người gửi yêu cầu: " + employee.getName()
                 + " - Nội dung: " + detail
                 + " - Chi phí: " + price
-                + " - Tình trạng: " + state.getValue();
+                + " - Tình trạng: " + state.getValue()
+                + " - Lý do: " + reason;
     }
 }

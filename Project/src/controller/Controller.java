@@ -22,10 +22,11 @@ public class Controller {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public static void menu() {
-        System.out.println("1 - Đăng nhập");
-        System.out.println("2 - Đăng kí tài khoản");
-        System.out.println("Lựa chọn: ");
         while (true) {
+            System.out.println("1 - Đăng nhập");
+            System.out.println("2 - Đăng kí tài khoản");
+            System.out.println("0 - Thoát chương trình");
+            System.out.println("Lựa chọn: ");
             int choose = sc.nextInt();
             sc.nextLine();
             switch (choose) {
@@ -63,6 +64,7 @@ public class Controller {
                     break;
                 case 2:
                     service.addAccount(employees);
+                    System.out.println("Tạo acc thành công");
                     break;
                 case 0:
                     System.exit(0);
@@ -182,17 +184,17 @@ public class Controller {
 
     public static void projectManagerLogin() {
         Employee projectManager = new Employee();
-        System.out.println("1 - Chấm công");
-        System.out.println("2 - Quản lý task công việc");
-        System.out.println("3 - Phê duyệt");
-        System.out.println("4 - Thay đổi thông tin cá nhân");
-        System.out.println("0 - Đăng xuất");
         for (Employee e : employees) {
             if (e.getEmail().equals(employee.getEmail())) {
                 projectManager = e;
             }
         }
         while (true) {
+            System.out.println("1 - Chấm công");
+            System.out.println("2 - Quản lý task công việc");
+            System.out.println("3 - Phê duyệt");
+            System.out.println("4 - Thay đổi thông tin cá nhân");
+            System.out.println("0 - Đăng xuất");
             System.out.println("Lựa chọn: ");
             int choose = sc.nextInt();
             sc.nextLine();
