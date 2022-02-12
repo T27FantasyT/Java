@@ -34,15 +34,11 @@ public class TaskService {
     }
 
     public void showStaff(ArrayList<Task> taskArrayList,Employee employee){
-        if(taskArrayList==null){
-            System.out.println("Danh sách trống");
-        } else {
             for (Task t : taskArrayList) {
                 if (t.getEmployee() == employee) {
                     System.out.println(t);
                 }
             }
-        }
     }
 
     public void updateState(ArrayList<Task> taskArrayList, Employee employee, int id){
