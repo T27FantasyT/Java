@@ -42,6 +42,7 @@ public class ApproveService {
                 switch (choose){
                     case 1:
                         a.setState(ApproveState.APPROVED);
+                        a.setReason("");
                         break;
                     case 2:
                         a.setState(ApproveState.REJECTED);

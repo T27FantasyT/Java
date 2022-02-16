@@ -24,7 +24,6 @@ public class Controller {
     public static void menu() {
         while (true) {
             System.out.println("1 - Đăng nhập");
-            System.out.println("2 - Đăng kí tài khoản");
             System.out.println("0 - Thoát chương trình");
             System.out.println("Lựa chọn: ");
             int choose = sc.nextInt();
@@ -61,10 +60,6 @@ public class Controller {
                         System.out.println("Không tồn tại tài khoản này");
                         menu();
                     }
-                    break;
-                case 2:
-                    service.addAccount(employees);
-                    System.out.println("Tạo acc thành công");
                     break;
                 case 0:
                     System.exit(0);
@@ -269,16 +264,18 @@ public class Controller {
 
     public static void adminLogin() {
         Employee admin = new Employee();
-        System.out.println("1 - Chấm công");
-        System.out.println("2 - Yêu cầu phê duyệt");
-        System.out.println("3 - Thay đổi thông tin cá nhân");
-        System.out.println("0 - Đăng xuất");
+
         for (Employee e : employees) {
             if (e.getEmail().equals(employee.getEmail())) {
                 admin = e;
             }
         }
         while (true) {
+            System.out.println("1 - Chấm công");
+            System.out.println("2 - Yêu cầu phê duyệt");
+            System.out.println("3 - Thay đổi thông tin cá nhân");
+            System.out.println("4 - Đăng kí tài khoản mới");
+            System.out.println("0 - Đăng xuất");
             System.out.println("Lựa chọn: ");
             int choose = sc.nextInt();
             sc.nextLine();
@@ -389,6 +386,10 @@ public class Controller {
                         }
                         adminLogin();
                     }
+                case 4:
+                    service.addAccount(employees);
+                    System.out.println("Tạo acc thành công");
+                    break;
                 case 0:
                     menu();
                     break;

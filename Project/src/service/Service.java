@@ -33,7 +33,6 @@ public class Service {
                 break;
             }
         }
-
         System.out.println("Nhập tên: ");
         String name = sc.nextLine();
         boolean isTrue = true;
@@ -123,7 +122,6 @@ public class Service {
         return false;
     }
 
-
     public void changePassword(Employee employee){
         System.out.println("Nhập password mới: ");
         employee.setPassword(sc.nextLine());
@@ -162,6 +160,7 @@ public class Service {
         employee.setEmail(sc.nextLine());
         System.out.println("Cập nhật email thành công");
     }
+
     public void changeTel(Employee employee){
         System.out.println("Nhập số điện thoại mới: ");
         employee.setTel(sc.nextLine());
